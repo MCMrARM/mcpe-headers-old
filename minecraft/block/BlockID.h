@@ -4,9 +4,9 @@ enum class BlockProperty;
 
 struct BlockID {
 
-    unsigned char id;
+    uint_fast8_t id;
 
-    BlockID(unsigned char id) : id(id) { }
+    BlockID(uint_fast8_t id) : id(id) { }
     BlockID(BlockID const& b) : BlockID(b.id) { }
 
     bool operator==(BlockID const& b) { return id == b.id; }

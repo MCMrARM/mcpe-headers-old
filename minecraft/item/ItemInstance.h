@@ -12,7 +12,7 @@ class Entity;
 class Mob;
 class Player;
 class ItemEnchants;
-enum class UseAnimation;
+enum class UseAnimation : unsigned char;
 
 class ItemInstance {
 
