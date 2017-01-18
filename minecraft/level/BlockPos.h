@@ -14,6 +14,7 @@ public:
     BlockPos(float, float, float);
     BlockPos(Vec3 const&);
     BlockPos(ChunkPos const&, int);
+    BlockPos(BlockPos const& b) : x(b.x), y(b.y), z(b.z) { }
 
     std::string toString() const;
 
