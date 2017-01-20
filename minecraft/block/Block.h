@@ -1,7 +1,9 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
+#include <map>
 #include <unordered_map>
 #include "BlockID.h"
 #include "Material.h"

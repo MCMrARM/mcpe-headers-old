@@ -1,8 +1,8 @@
 #pragma once
 
-class Color;
+#include "MaterialType.h"
 
-enum class MaterialType;
+class Color;
 
 class Material {
 
@@ -39,7 +39,7 @@ public:
     static void initMaterials();
     static void _setupSurfaceMaterials();
     static void teardownMaterials();
-    static Material* getMaterial(MaterialType);
+    static Material const& getMaterial(MaterialType);
     static void addMaterial(std::unique_ptr<Material, std::default_delete<Material>>);
 
     // static fields
