@@ -39,7 +39,7 @@ public:
     static void initMaterials();
     static void _setupSurfaceMaterials();
     static void teardownMaterials();
-    static const Material& getMaterial(MaterialType);
+    static Material const& getMaterial(MaterialType);
     static void addMaterial(std::unique_ptr<Material, std::default_delete<Material>>);
 
     // static fields

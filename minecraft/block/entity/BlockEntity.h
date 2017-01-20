@@ -12,15 +12,21 @@ class Block;
 class CompoundTag;
 class BlockSource;
 
+enum class BlockEntityRendererId : int {
+    DEFAULT,
+    SIGN,
+    //TODO: Need more research
+};
+
 class BlockEntity {
 
 public:
 
-    /* 0x04 */ int unknown1; // ?? maybe ptr
+    /* 0x04 */ int unknown1;
     /* 0x08 */ Block* blockOwner;
-    /* 0x0C */ int unknown2; // BlockEntityRenderDispatcher::getRenderer(BlockEntity&)
-    /* 0x10 */ char filler2[12]; // ?? maybe a vector?
-    /* 0x1C */ int unknown3; // BlockEntity::stopDestroy maybe a bool
+    /* 0x0C */ int unknown2;
+    /* 0x10 */ char filler2[12]; // Vec3?
+    /* 0x1C */ int unknown3;
     /* 0x20 */ BlockPos pos;
     /* 0x2C */ AABB aabb;
     /* 0x48 */ int data;
@@ -53,8 +59,8 @@ public:
     virtual std::string getDebugText(std::vector<std::string>&);
 
     // non virtual
-    BlockEntity(BlockEntityType, const BlockPos&, const std::string&);
-    void _destructionWobble(float &,float &,float &);
+    BlockEntity(BlockEntityType, BlockPos const&, std::string const&);
+    void _destructionWobble(float&, float&, float&);
     void _resetAABB();
     float distanceToSqr(Vec3 const&);
     AABB getAABB();

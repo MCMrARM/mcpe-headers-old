@@ -28,9 +28,3 @@ enum class BlockEntityType : int {
     EndGateway = 24,
     StructureBlock = 32,
 };
-
-enum class BlockEntityRendererId : int {
-    DEFAULT,
-    SIGN,
-    //TODO: Need more research
-};
