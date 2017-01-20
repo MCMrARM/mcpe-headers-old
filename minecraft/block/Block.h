@@ -38,7 +38,7 @@ public:
     /* 0x14 */ BlockRenderLayer renderLayer;
     /* 0x18 */ int properties;
     /* 0x1c */ BlockEntityType blockEntityType;
-    /* 0x20 */ bool unknown;
+    /* 0x20 */ bool animates;
     /* 0x24 */ int unknown2;
     /* 0x28 */ float thickness;
     /* 0x2c */ bool slideable;
