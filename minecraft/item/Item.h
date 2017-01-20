@@ -3,6 +3,7 @@
 #include <string>
 #include <memory>
 #include <unordered_map>
+#include <vector>
 #include "../math/Vec3.h"
 #include "../block/BlockID.h"
 

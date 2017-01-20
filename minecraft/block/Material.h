@@ -2,7 +2,23 @@
 
 class Color;
 
-enum class MaterialType;
+enum class MaterialType {
+    DIRT = 1,
+    WOOD,
+    STONE,
+    IRON,
+    WATER,
+    LAVA,
+    WOOL,
+    DECORATION = 8,
+    PLANT,
+    SAND = 14,
+    TORCH,
+    PORTAL = 25,
+    CIRCUIT = 28,
+    LAMP = 30,
+    OIL
+};
 
 class Material {
 
@@ -39,7 +55,7 @@ public:
     static void initMaterials();
     static void _setupSurfaceMaterials();
     static void teardownMaterials();
-    static Material* getMaterial(MaterialType);
+    static const Material& getMaterial(MaterialType);
     static void addMaterial(std::unique_ptr<Material, std::default_delete<Material>>);
 
     // static fields
