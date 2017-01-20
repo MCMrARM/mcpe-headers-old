@@ -13,13 +13,14 @@ class CompoundTag;
 class BlockSource;
 
 class BlockEntity {
+
 public:
-    //void** vtable 0
-    /* 0x04 */ int unknown1;
+
+    /* 0x04 */ int unknown1; // ?? maybe ptr
     /* 0x08 */ Block* blockOwner;
-    /* 0x0C */ int unknown2;
+    /* 0x0C */ int unknown2; // BlockEntityRenderDispatcher::getRenderer(BlockEntity&)
     /* 0x10 */ char filler2[12]; // ?? maybe a vector?
-    /* 0x1C */ int unknown3;
+    /* 0x1C */ int unknown3; // BlockEntity::stopDestroy maybe a bool
     /* 0x20 */ BlockPos pos;
     /* 0x2C */ AABB aabb;
     /* 0x48 */ int data;
@@ -31,11 +32,25 @@ public:
     /* 0x5C */ bool changed;
     /* size = 0x60 */
 
-    // static
-    static void initBlockEntities();
-    static bool isType(BlockEntity&, BlockEntityType);
-    static BlockEntity* loadStatic(CompoundTag const&);
-    static void setId(BlockEntityType, std::string const&);
+    // virtual
+    virtual ~BlockEntity();
+    virtual void load(CompoundTag const&);
+    virtual bool save(CompoundTag&);
+    virtual void tick(BlockSource&);
+    virtual bool isFinished();
+    virtual void onChanged(BlockSource&);
+    virtual bool isMovable();
+    virtual void* getUpdatePacket(BlockSource&);
+    virtual void onUpdatePacket(CompoundTag const&, BlockSource&);
+    virtual void onMove();
+    virtual void onRemoved(BlockSource&);
+    virtual void triggerEvent(int, int);
+    virtual BlockEntity* clearCache();
+    virtual void onNeighborChanged(BlockSource&, BlockPos const&);
+    virtual int getShadowRadius(BlockSource&) const;
+    virtual bool hasAlphaLayer() const;
+    virtual void* getCrackEntity(BlockSource&, BlockPos const&);
+    virtual std::string getDebugText(std::vector<std::string>&);
 
     // non virtual
     BlockEntity(BlockEntityType, const BlockPos&, const std::string&);
@@ -62,23 +77,10 @@ public:
     void setRunningId(int);
     void stopDestroy();
 
-    // Virtual
-    virtual ~BlockEntity();
-    virtual void load(CompoundTag const&);
-    virtual bool save(CompoundTag&);
-    virtual void tick(BlockSource&);
-    virtual bool isFinished();
-    virtual void onChanged(BlockSource&);
-    virtual bool isMovable();
-    virtual void* getUpdatePacket(BlockSource&);
-    virtual void onUpdatePacket(CompoundTag const&, BlockSource&);
-    virtual void onMove();
-    virtual void onRemoved(BlockSource&);
-    virtual void triggerEvent(int, int);
-    virtual BlockEntity* clearCache();
-    virtual void onNeighborChanged(BlockSource&, BlockPos const&);
-    virtual int getShadowRadius(BlockSource&) const;
-    virtual bool hasAlphaLayer() const;
-    virtual void* getCrackEntity(BlockSource&, BlockPos const&);
-    virtual std::string getDebugText(std::vector<std::string>&);
+    // static
+    static void initBlockEntities();
+    static bool isType(BlockEntity&, BlockEntityType);
+    static BlockEntity* loadStatic(CompoundTag const&);
+    static void setId(BlockEntityType, std::string const&);
+
 };

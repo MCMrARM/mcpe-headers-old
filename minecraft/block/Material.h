@@ -1,24 +1,8 @@
 #pragma once
 
-class Color;
+#include "MaterialType.h"
 
-enum class MaterialType {
-    DIRT = 1,
-    WOOD,
-    STONE,
-    IRON,
-    WATER,
-    LAVA,
-    WOOL,
-    DECORATION = 8,
-    PLANT,
-    SAND = 14,
-    TORCH,
-    PORTAL = 25,
-    CIRCUIT = 28,
-    LAMP = 30,
-    OIL
-};
+class Color;
 
 class Material {
 
