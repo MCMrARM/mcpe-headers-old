@@ -1,7 +1,13 @@
 #pragma once
 
-namespace mce { class RenderContext; class MaterialPtr; class TexturePtr; }
-namespace mce { enum class PrimitiveMode; enum class VertexFormat; enum class IndexBufferUsageMode; }
+namespace mce {
+
+class RenderContext;
+class MaterialPtr;
+class TexturePtr;
+enum class PrimitiveMode;
+enum class VertexFormat;
+enum class IndexBufferUsageMode;
 
 class Mesh {
 
@@ -34,5 +40,7 @@ public:
     void _move(mce::Mesh&);
 
     mce::Mesh& operator=(mce::Mesh&&);
+
+};
 
 };
