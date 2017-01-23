@@ -12,7 +12,8 @@ class BiomeDecorator {
 
 public:
 
-    //TODO: Research field (Good Luck!)
+    //TODO: Research field
+    char filler[0xFC]
     /* size = 0xFC */
 
     // virtual
@@ -20,7 +21,7 @@ public:
     virtual void decorateOres(BlockSource*, Random&, BlockPos const&);
     virtual ~BiomeDecorator();
 
-    // non virtuals
+    // non virtual
     BiomeDecorator();
     void decorateDepthSpan(BlockSource*, Random&, BlockPos const&, int, std::unique_ptr<Feature>&, int, int);
     void decorateDepthAverage(BlockSource*, Random&, BlockPos const&, int, std::unique_ptr<Feature>&, int, int);

@@ -21,12 +21,13 @@ public:
         float scale;
     };
     
-    enum class BiomeTye {}; // TODO: Research
+    enum class BiomeTye; // TODO: Research
     
     // TODO: Research fields
+    char filler[0x9C]
     /* size = 0x9C */
 
-    //virtual
+    // virtual
     virtual void setColor(int);
     virtual void setColor(int, bool);
     virtual ~Biome();
@@ -35,27 +36,27 @@ public:
     virtual void getTemperature();
     virtual void adjustScale(float);
     virtual void adjustDepth(float);
-    virtual void getSkyColor(float);
-    virtual void getMobs(EntityType);
+    virtual Color getSkyColor(float);
+    virtual void* getMobs(EntityType);
     virtual void getCreatureProbability();
-    virtual void getFoliageColor();
-    virtual void getBirchFoliageColor();
-    virtual void getEvergreenFoliageColor();
-    virtual void getMapFoliageColor();
-    virtual void getMapBirchFoliageColor();
-    virtual void getMapEvergreenFoliageColor();
+    virtual Color getFoliageColor();
+    virtual Color getBirchFoliageColor();
+    virtual Color getEvergreenFoliageColor();
+    virtual void* getMapFoliageColor();
+    virtual void* getMapBirchFoliageColor();
+    virtual void* getMapEvergreenFoliageColor();
     virtual void getRandomFlowerTypeAndData(Random&, BlockPos const&);
     virtual void decorate(BlockSource*, Random&, BlockPos const&, bool, float);
     virtual void buildSurfaceAt(Random&, BlockVolume&, BlockPos const&, float, short);
-    virtual void getGrassColor(BlockPos const&);
-    virtual void getMapGrassColor(BlockPos const&);
+    virtual Color getGrassColor(BlockPos const&);
+    virtual void* getMapGrassColor(BlockPos const&);
     virtual void refreshBiome(unsigned int);
     virtual void getTemperatureCategory() const;
-    virtual void isSame(Biome*);
-    virtual void isHumid();
-    virtual void createMutatedCopy(int);
+    virtual bool isSame(Biome*);
+    virtual bool isHumid();
+    virtual Biome* createMutatedCopy(int);
 
-    //non virtual
+    // non virtual
     Biome(int, Biome::BiomeType, std::unique_ptr<BiomeDecorator>);
     void LoadInstanceData(LevelStorage &);
     void ResetInstanceData();
@@ -63,12 +64,12 @@ public:
     void _placeBedrock(Random &,BlockVolume &,BlockPos const&);
     void buildSurfaceAtDefault(Random &,BlockVolume &,BlockPos const&,float,short);
     void clearMobs(bool,bool,bool);
-    void createMutatedCopy();
+    Biome* createMutatedCopy();
     BiomeType getBiomeType();
-    void getDownfall();
+    float getDownfall();
     int getDownfallInt();
     void getSnowAccumulationLayers();
-    void isSnowCovered();
+    bool isSnowCovered();
     void refreshBiomes(unsigned int);
     void setDepthAndScale(Biome::BiomeHeight const&);
     void setLeafColor(int);
@@ -79,7 +80,7 @@ public:
     void setSnowCovered();
     void setTemperatureAndDownfall(float,float);
 
-    //static
+    // static
     static void initBiomes();
     static Biome* getBiome(int);
     static Biome* getBiome(int, Biome*);

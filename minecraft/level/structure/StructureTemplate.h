@@ -17,9 +17,9 @@ class StructureTemplate {
 public:
     
     // TODO: Research fields
+    char filler[0x44]
     /* size = 0x44 */
 
-    // non-virtuals
     StructureTemplate();
     StructureTemplate(StructureTemplate const&);
     ~StructureTemplate();
@@ -30,7 +30,7 @@ public:
     void _mapToString(CompoundTag&, unsigned char);
     void fillEntityList(BlockSource&, BlockPos const&, BlockPos&);
     void setAuthor(std::string);
-    void operator=(StructureTemplate const&);
+    StructureTemplate& operator=(StructureTemplate const&);
     void _transform(BlockPos, Mirror, Rotation) const;
     void _calculateRelativePosition(BlockPos, StructureSettings const&) const;
     void placeInWorld(BlockSource&, BlockPos const&, StructureSettings&);

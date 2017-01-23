@@ -7,7 +7,6 @@ class Random;
 struct FullBlock;
 
 class Feature {
-
 public:
     
     Entity* entity;
@@ -17,7 +16,7 @@ public:
     virtual ~Feature();
     virtual void place(BlockSource&, BlockPos const&, Random&) const = 0;
 
-    // non virtuals
+    // non virtual
     Feature(Entity*);
     void _placeBlock(BlockSource&, BlockPos const&, FullBlock const&) const;
     void _setBlockAndData(BlockSource&, BlockPos const&, FullBlock const&) const;

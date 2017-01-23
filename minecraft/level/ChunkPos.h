@@ -1,18 +1,19 @@
 #pragma once
 
+class BlockPos;
+class Vec3;
+
 class ChunkPos {
 
 public:
 
-    int x;
-    int z;
-    /* size = 0x08 */
+    int x, int z;
 
-    // non virtuals
+    // non virtual
     ChunkPos(BlockPos const&);
     ChunkPos(Vec3 const&);
-    double distanceToSqr(Entity const&) const;
-    void getMiddleBlockPosition(int) const;
+    float distanceToSqr(Entity const&) const;
+    BlockPos getMiddleBlockPosition(int) const;
 
     // static
     static ChunkPos INVALID;
