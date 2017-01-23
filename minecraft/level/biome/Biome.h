@@ -24,7 +24,7 @@ public:
     enum class BiomeTye; // TODO: Research
     
     // TODO: Research fields
-    char filler[0x9C]
+    char filler[0x9C];
     /* size = 0x9C */
 
     // virtual

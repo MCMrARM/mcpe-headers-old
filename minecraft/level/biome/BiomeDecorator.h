@@ -13,7 +13,7 @@ class BiomeDecorator {
 public:
 
     //TODO: Research field
-    char filler[0xFC]
+    char filler[0xFC];
     /* size = 0xFC */
 
     // virtual

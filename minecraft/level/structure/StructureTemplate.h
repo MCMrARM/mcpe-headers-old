@@ -17,7 +17,7 @@ class StructureTemplate {
 public:
     
     // TODO: Research fields
-    char filler[0x44]
+    char filler[0x44];
     /* size = 0x44 */
 
     StructureTemplate();
