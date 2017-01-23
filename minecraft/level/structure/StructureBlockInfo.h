@@ -1,5 +1,9 @@
 #pragma once
 
+class BlockPos;
+class CompoundTag;
+struct FullBlock;
+
 class StructureBlockInfo {
 
 public:

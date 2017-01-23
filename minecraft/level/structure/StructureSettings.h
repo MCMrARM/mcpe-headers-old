@@ -42,10 +42,10 @@ public:
     Rotation getRotation() const;
     float getIntegrity() const;
     unsigned int getSeed() const;
-    Mirror getMirror() const;
+    Mirror& getMirror() const;
     ChunkPos getChunkPos() const;
     void updateBoundingBoxFromChunkPos();
     void _calculateBoundingBox(ChunkPos const&);
-    bool ignoreStructureBlocks(bool);
+    void ignoreStructureBlocks(bool);
     void retrieveRandom(Random&) const;
 };
