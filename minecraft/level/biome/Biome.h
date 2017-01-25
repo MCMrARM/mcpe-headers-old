@@ -11,6 +11,7 @@ class BlockPos;
 class BlockSource;
 class BlockVolume;
 class LevelStorage;
+class BiomeDecorator;
 
 class Biome {
 
@@ -21,7 +22,8 @@ public:
         float scale;
     };
     
-    enum class BiomeTye; // TODO: Research
+    // TODO: Need testing
+    enum class BiomeType : int { Beach, Desert, ExtremeHills, Flat, Forest, Hell, Ice, Jungle, Mesa, MushroomIsland, Ocean, Plain, River, Savanna, StoneBeach, Swamp, Taiga, TheEnd };
     
     // TODO: Research fields
     char filler[0x9C];
