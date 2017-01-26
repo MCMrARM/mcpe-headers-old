@@ -1,5 +1,9 @@
 #pragma once
 
+#include <memory>
+
+#include "../ItemInstance.h"
+
 class FurnaceRecipes {
 
 public:
@@ -22,6 +26,6 @@ public:
     static FurnaceRecipes* getInstance();
 
     // static fields
-    static FurnaceRecipes* mInstance;
+    static std::unique_ptr<FurnaceRecipes> mInstance;
 
 };
