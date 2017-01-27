@@ -17,7 +17,6 @@ public:
     /* size = 0x10 */
 
     // virtuals
-    virtual ~OreFeature();
     virtual void place(BlockSource&, BlockPos const&, Random&) const;
 
     // non virtuals
