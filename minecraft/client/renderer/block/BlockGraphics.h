@@ -10,17 +10,21 @@ class BlockPos;
 class Block;
 class AABB;
 class Vec3;
+class Random;
+class FullBlock;
 enum class BlockRenderLayer;
 enum class BlockShape;
 class TextureAtlas;
 class TextureAtlasItem;
-namespace Json { class Value; };
+namespace Json { class Value; }
 
 enum class BlockSoundType {
     NORMAL, GRAVEL, WOOD, GRASS, METAL, STONE, CLOTH, GLASS, SAND, SNOW, LADDER, ANVIL, SLIME, SILENT, DEFAULT, UNDEFINED
 };
 
 class BlockGraphics {
+
+public:
 
     /* 0x04 */ unsigned char id;
     /* 0x08 */ Block* block;
@@ -104,7 +108,7 @@ class BlockGraphics {
     // static fields
     static float SIZE_OFFSET;
     static std::shared_ptr<TextureAtlas> mTerrainTextureAtlas;
-    static BlockGraphics* mBlocks;
+    static BlockGraphics* mBlocks[];
     static std::vector<std::unique_ptr<BlockGraphics>> mOwnedBlocks;
     static std::unordered_map<std::string, BlockGraphics*> mBlockLookupMap;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "../../util/ResourceLocation.h"
+#include "../../resource/ResourceLocation.h"
 
 namespace mce {
 

@@ -28,7 +28,7 @@ enum class CooldownType;
 class FoodItemComponent;
 class SeedItemComponent;
 class CameraItemComponent;
-namespace Json { class Value; };
+namespace Json { class Value; }
 
 class Item {
 

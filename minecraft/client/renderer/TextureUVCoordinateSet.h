@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../util/ResourceLocation.h"
+#include "../../resource/ResourceLocation.h"
 
 class TextureUVCoordinateSet {
 
