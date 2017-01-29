@@ -62,6 +62,9 @@ public:
 
     enum class InitializationMethod;
 
+    char filler[0xCA8];
+    /* size = 0xCAC */
+
     // virtual
     virtual void reloadHardcoded(Entity::InitializationMethod, VariantParameterList const&);
     virtual void reloadHardcodedClient(Entity::InitializationMethod, VariantParameterList const&);
