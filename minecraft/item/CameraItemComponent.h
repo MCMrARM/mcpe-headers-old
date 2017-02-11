@@ -14,14 +14,14 @@ class Vec3;
 class CameraItemComponent {
 public:
 
-	/* 0x04 */	float blackBarsDuration;
-	/* 0x08 */	float blackBarsScreenRatio;
-	/* 0xC */	Item& item;
-	/* 0x10 */	float shutterDuration;
-	/* 0x14 */	float pictureDuration;
-	/* 0x18 */	float slideAwayDuration;
-	/* 0x1C */	bool whoknows2;
-	/* 0x20 */	int whoknows3;
+	/* 0x04 */ float blackBarsDuration;
+	/* 0x08 */ float blackBarsScreenRatio;
+	/* 0x0C */ Item& item;
+	/* 0x10 */ float shutterDuration;
+	/* 0x14 */ float pictureDuration;
+	/* 0x18 */ float slideAwayDuration;
+	/* 0x1C */ bool whoknows2;
+	/* 0x20 */ int whoknows3;
 	/* size = 0x24 */
 
 	virtual ~CameraItemComponent();
