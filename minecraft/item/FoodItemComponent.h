@@ -21,13 +21,13 @@ public:
 
 	};
 
-	/* 0x00 */	Item& item;
-	/* 0x04 */	int nutrition;
-	/* 0x08 */	float saturationModifier;
-	/* 0xC */	bool isMeat;
-	/* 0x10 */	std::string eatSound;
-	/* 0x14 */	std::string usingConvertsTo;
-	/* 0x18 */	std::vector<FoodItemComponent::Effect>& effects;
+	/* 0x00 */ Item& item;
+	/* 0x04 */ int nutrition;
+	/* 0x08 */ float saturationModifier;
+	/* 0x0C */ bool isMeat;
+	/* 0x10 */ std::string eatSound;
+	/* 0x14 */ std::string usingConvertsTo;
+	/* 0x18 */ std::vector<FoodItemComponent::Effect>& effects;
 	/* size = 0x24 */
 
 	FoodItemComponent(Item&);
