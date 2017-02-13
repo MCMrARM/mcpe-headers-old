@@ -5,10 +5,7 @@
 class SignBlockEntity : public BlockEntity {
 public:
 
-	/* 0x60 */ std::string text1;
-	/* 0x64 */ std::string text2;
-	/* 0x68 */ std::string text3;
-	/* 0x6C */ std::string text4;
+	/* 0x60 */ std::string text[4];
 	/* 0x70 */ int selectedLine;
 	/* 0x74 */ bool editable;
 	/* size = 0x78 */
