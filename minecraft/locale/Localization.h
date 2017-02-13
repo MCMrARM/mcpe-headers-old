@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 #include <vector>
 
 class ResourcePackManager;
@@ -9,7 +10,7 @@ class Localization {
   
 public:
 
-    enum class State : int {};
+    enum class State : int;
 
     /* 0x00 */ State state;
     /* 0x04 */ unsigned char commaSeperator;
@@ -38,5 +39,6 @@ public:
     void _parseFormattedString(std::string const&) const;
 
     // static fields
-    static void* fallbackLocale;
+    static std::unique_ptr<Localization> fallbackLocale;
+    
 };

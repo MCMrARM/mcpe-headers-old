@@ -28,7 +28,8 @@ public:
     static std::string get(std::string const&, std::vector<std::string> const&);
 
     // static fields
-    static void* mLanguages;
+    static std::vector<std::unique_ptr<Localization>> mLanguages;
     static std::unique_ptr<Localization> mCurrentLanguage;
     static void* mFormatDictionary;
+
 };
