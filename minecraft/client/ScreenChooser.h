@@ -37,10 +37,10 @@ class ChalkboardBlockEntity;
 class ScreenChooser {
 public:
 
-	/* 0x00 */	MinecraftClient& client;
-	/* 0x04 */	std::unique_ptr<MinecraftUISoundPlayer> soundplayer;
-	/* 0x08 */	bool canInvite;
-	/* 0xC */	char filler1[8]; // no idea what this is used for
+	/* 0x00 */ MinecraftClient& client;
+	/* 0x04 */ std::unique_ptr<MinecraftUISoundPlayer> soundplayer;
+	/* 0x08 */ bool canInvite;
+	/* 0x0C */ char filler1[8]; // no idea what this is used for
 	/* size = 0x14 */
 
 	// non virtual
