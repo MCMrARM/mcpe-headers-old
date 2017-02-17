@@ -84,6 +84,7 @@ public:
     virtual Vec3 const& getVelocity() const;
     virtual void setRot(Vec2 const&);
     virtual void move(Vec3 const&);
+    virtual Vec2 getInterpolatedBodyRot(float) const;
     virtual void checkBlockCollisions(AABB const&);
     virtual void checkBlockCollisions();
     virtual bool canFly();

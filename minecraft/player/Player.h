@@ -116,6 +116,7 @@ public:
     virtual void openBeacon(int, BlockPos const&);
     virtual void openPortfolio();
     virtual void openHorseInventory(int, EntityUniqueID const&);
+    virtual void openTrading(EntityUniqueID const&);
     virtual bool canOpenContainerScreen();
     virtual void openChalkboard(ChalkboardBlockEntity&);
     virtual void openNpcInteractScreen(Entity&);

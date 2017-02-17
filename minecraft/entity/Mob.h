@@ -21,6 +21,7 @@ public:
     virtual void initializeComponents(Entity::InitializationMethod, VariantParameterList const&);
     virtual bool hasComponent(std::string const&) const;
     virtual ~Mob();
+    virtual Vec2 getInterpolatedBodyRot(float);
     virtual void teleportTo(Vec3 const&, int, int);
     virtual void lerpTo(Vec3 const&, Vec2 const&, int);
     virtual void normalTick();
