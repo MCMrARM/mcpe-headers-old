@@ -24,6 +24,7 @@ public:
     CompoundTag* nbt;
     Item* item;
     Block* tile;
+    /* size = 0x10 */
 
     ItemInstance();
     ItemInstance(bool);
