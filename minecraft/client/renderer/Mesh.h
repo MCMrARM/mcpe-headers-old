@@ -20,18 +20,20 @@ public:
     Mesh();
     ~Mesh();
 
-    bool hasIndices();
-    bool isTemporary();
-    bool isValid();
+    bool hasIndices() const;
+    bool isTemporary() const;
+    bool isValid() const;
+
+    unsigned int getMeshSize() const;
 
     void reset();
     void clearGlobalBuffers();
     void releaseIndexBuffer();
 
-    void render(mce::MaterialPtr const&, mce::TexturePtr const&, mce::TexturePtr const&, mce::TexturePtr const&, unsigned int, unsigned int);
-    void render(mce::MaterialPtr const&, mce::TexturePtr const&, mce::TexturePtr const&, unsigned int, unsigned int);
-    void render(mce::MaterialPtr const&, mce::TexturePtr const&, unsigned int, unsigned int);
-    void render(mce::MaterialPtr const&, unsigned int, unsigned int);
+    void render(mce::MaterialPtr const&, unsigned int, unsigned int) const;
+    void render(mce::MaterialPtr const&, mce::TexturePtr const&, unsigned int, unsigned int) const;
+    void render(mce::MaterialPtr const&, mce::TexturePtr const&, mce::TexturePtr const&, unsigned int, unsigned int) const;
+    void render(mce::MaterialPtr const&, mce::TexturePtr const&, mce::TexturePtr const&, mce::TexturePtr const&, unsigned int, unsigned int) const;
 
     void loadIndexBuffer(unsigned int, void const*, unsigned int);
     bool loadRawData(mce::RenderContext&, unsigned char*);

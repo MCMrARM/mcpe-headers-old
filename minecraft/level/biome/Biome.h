@@ -59,7 +59,7 @@ public:
     virtual Biome* createMutatedCopy(int);
 
     // non virtual
-    Biome(int, Biome::BiomeType, std::unique_ptr<BiomeDecorator>);
+    Biome(int, Biome::BiomeType, std::unique_ptr<BiomeDecorator, std::default_delete<BiomeDecorator>>);
     void LoadInstanceData(LevelStorage &);
     void ResetInstanceData();
     void SaveInstanceData(LevelStorage &);
@@ -68,9 +68,9 @@ public:
     void clearMobs(bool,bool,bool);
     Biome* createMutatedCopy();
     BiomeType getBiomeType();
-    float getDownfall();
+    float getDownfall() const;
     int getDownfallInt();
-    void getSnowAccumulationLayers();
+    void* getSnowAccumulationLayers() const;
     bool isSnowCovered();
     void refreshBiomes(unsigned int);
     void setDepthAndScale(Biome::BiomeHeight const&);

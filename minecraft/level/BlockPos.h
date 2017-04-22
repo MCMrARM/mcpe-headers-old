@@ -23,6 +23,9 @@ public:
 
     Vec3 center() const;
 
+    int randomSeed() const;
+    float randomFloat() const;
+
     static BlockPos MIN;
     static BlockPos MAX;
     static BlockPos ONE;

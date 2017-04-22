@@ -34,7 +34,7 @@ public:
 
 	int getNutrition() const;
 	float getSaturationModifier() const;
-	void _loadEffects(std::vector<FoodItemComponent::Effect>&, Json::Value&);
+	void _loadEffects(std::vector<FoodItemComponent::Effect, std::allocator<FoodItemComponent::Effect>>&, Json::Value&);
 	void useTimeDepleted(ItemInstance&, Player&, Level&);
 	void _applyEatEffects(ItemInstance&, Player&, Level&);
 	void use(ItemInstance&, Player&);

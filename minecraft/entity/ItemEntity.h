@@ -28,6 +28,7 @@ public:
     virtual EntityType getEntityTypeId() const;
     virtual void getSourceUniqueID() const;
     virtual void* getHandleWaterAABB() const;
+    virtual bool canSynchronizeNewEntity() const;
     virtual void _hurt(EntityDamageSource const&, int, bool, bool);
     virtual void readAdditionalSaveData(CompoundTag const&);
     virtual void addAdditionalSaveData(CompoundTag&);

@@ -35,8 +35,8 @@ public:
     void setChunkPos(ChunkPos const&);
     void setBoundingBox(BoundingBox const&);
     bool isIgnoreStructureBlocks() const;
-    bool isIgnoreBlock();
-    bool isIgnoreEntities();
+    bool isIgnoreEntities() const;
+    bool isIgnoreBlock() const;
     BoundingBox getBoundingBox();
     Block* getIgnoreBlock() const;
     Rotation getRotation() const;
@@ -48,4 +48,5 @@ public:
     void _calculateBoundingBox(ChunkPos const&);
     void ignoreStructureBlocks(bool);
     void retrieveRandom(Random&) const;
+    BoundingBox const& getBoundingBoxConst() const;
 };

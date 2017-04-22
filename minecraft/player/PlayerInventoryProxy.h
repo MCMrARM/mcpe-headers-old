@@ -24,6 +24,7 @@ public:
 
     virtual void* containerSizeChanged(int);
     virtual ~PlayerInventoryProxy();
+    virtual void* containerContentChanged(int);
 
     PlayerInventoryProxy(std::unique_ptr<Inventory, std::default_delete<Inventory>>);
 
@@ -50,7 +51,7 @@ public:
     int getSlotWithItem(ItemInstance const&, bool, bool) const;
     void moveToSelectionSlot(int, int);
     int getEmptySlotsCount() const;
-    void* getSlots();
+    void* getSlots() const;
     void* getSlotCopies(ContainerID) const;
     void* _getHudContainer() const;
     void setContainerSize(int, ContainerID);
@@ -59,7 +60,7 @@ public:
     bool _hasFixedInventoryResource(int);
     bool removeResource(int);
     bool removeResource(ItemInstance const&);
-    int removeResource(ItemInstance const&, bool);
+    void* removeResource(ItemInstance const&, bool, int);
     void swapSlots(int, int);
     void clearSlot(int, ContainerID);
     void clearInventory(int);
@@ -70,7 +71,7 @@ public:
     void dropSlot(int, bool, bool, ContainerID, bool);
     void dropAll(bool);
     void tick();
-    void setItem(int, ItemInstance const*, ContainerID);
+    void setItem(int, ItemInstance const&, ContainerID);
     ItemInstance* getItem(int, ContainerID) const;
     void* _getHudContainerManagerModel();
     void* _getInventoryContainer();
@@ -82,6 +83,10 @@ public:
     void selectFixedInventorySlot(int);
     int getFixedInventorySlotCount() const;
     void* getAllContainerIds();
+    void* getComplexItems(ContainerID) const;
+    void* getItemCount(int, int);
+    void* getAndRemoveResource(ItemInstance&, bool);
+    void setSelectedItem(ItemInstance const&);
 
 };
 

@@ -58,7 +58,9 @@ public:
     Vec3 getBounds() const;
     Vec3 getCenter() const;
     bool contains(Vec3 const&) const;
+    bool contains(AABB const&) const;
     float getSize() const;
+    float getVolume() const;
 
     std::string toString() const;
 

@@ -13,8 +13,6 @@ public:
     static std::string base64_encode(std::string const&, bool);
     static std::string base64_encode(unsigned char const*, unsigned int, bool);
     static std::string base64_decode(std::string const&);
-    static void* loadEntityTargetFilter(EntityTargetFilter&, Json::Value const&);
-    static void* loadTargetFilter(EntityTargetFilter&, Json::Value const&);
     static std::string compress(std::string const&);
     static std::string decompress(std::string const&);
     static std::string decompress(std::string const&, bool&);
@@ -68,6 +66,8 @@ public:
     static void* cp437ToUTF8(std::string const&);
     static void* getPoint(float, float, float);
     static void* getBezier(float, float, float, float);
+    static std::string cp1252ToUTF8(std::string const&);
+    static bool isValidUTF8(std::string const&);
 
     // static fields
     static void* REPLACEMENT_CHARACTER_CODE;

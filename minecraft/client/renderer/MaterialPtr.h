@@ -22,7 +22,6 @@ public:
 
     ~MaterialPtr();
 
-    operator bool() const;
     mce::MaterialPtr& operator=(mce::MaterialPtr&&);
 
     std::wstring getNameW() const;

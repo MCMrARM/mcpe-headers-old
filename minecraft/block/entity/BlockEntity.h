@@ -41,12 +41,17 @@ public:
     // virtual
     virtual ~BlockEntity();
     virtual void load(CompoundTag const&);
-    virtual bool save(CompoundTag&);
+    virtual bool save(CompoundTag&) const;
+    virtual void* saveItemInstanceData(CompoundTag&);
+    virtual void* saveBlockData(CompoundTag&, BlockSource&) const;
+    virtual void* loadBlockData(CompoundTag const&, BlockSource&);
     virtual void tick(BlockSource&);
     virtual bool isFinished();
     virtual void onChanged(BlockSource&);
     virtual bool isMovable();
+    virtual bool isCustomNameSaved();
     virtual void* getUpdatePacket(BlockSource&);
+    virtual void onPlace(BlockSource&);
     virtual void onUpdatePacket(CompoundTag const&, BlockSource&);
     virtual void onMove();
     virtual void onRemoved(BlockSource&);
@@ -56,22 +61,24 @@ public:
     virtual int getShadowRadius(BlockSource&) const;
     virtual bool hasAlphaLayer() const;
     virtual void* getCrackEntity(BlockSource&, BlockPos const&);
-    virtual std::string getDebugText(std::vector<std::string>&);
+    virtual std::string getDebugText(std::vector<std::string, std::allocator<std::string>>&);
+    virtual std::string const& getCustomName() const;
+    virtual std::string getName() const;
 
     // non virtual
     BlockEntity(BlockEntityType, BlockPos const&, std::string const&);
     void _destructionWobble(float&, float&, float&);
     void _resetAABB();
     float distanceToSqr(Vec3 const&);
-    AABB getAABB();
+    AABB getAABB() const;
     Block* getBlock();
-    int getData();
-    BlockPos getPosition();
-    BlockEntityRendererId getRendererId();
-    int getRunningId();
-    BlockEntityType getType();
-    bool isClientSideOnly();
-    bool isInWorld();
+    int getData() const;
+    BlockPos getPosition() const;
+    BlockEntityRendererId getRendererId() const;
+    int getRunningId() const;
+    BlockEntityType getType() const;
+    bool isClientSideOnly() const;
+    bool isInWorld() const;
     bool isType(BlockEntityType);
     void moveTo(BlockPos const&);
     void setBB(AABB);
@@ -82,6 +89,10 @@ public:
     void setRendererId(BlockEntityRendererId);
     void setRunningId(int);
     void stopDestroy();
+    void setCustomNameSaved(bool);
+    bool canRenderCustomName() const;
+    std::string getDisplayName() const;
+    void setCustomName(std::string const&);
 
     // static
     static void initBlockEntities();

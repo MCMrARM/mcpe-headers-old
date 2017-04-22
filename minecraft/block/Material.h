@@ -11,6 +11,7 @@ public:
     class Settings;
 
     Material(MaterialType, Material::Settings, float);
+    ~Material();
 
     Color getColor() const;
     bool getBlocksMotion() const;

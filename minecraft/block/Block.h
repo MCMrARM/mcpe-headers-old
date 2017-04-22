@@ -76,10 +76,11 @@ public:
     virtual bool isStairBlock() const;
     virtual bool isRailBlock() const;
     virtual bool canHurtAndBreakItem() const;
-    virtual bool isRedstoneBlock() const;
     virtual bool isSignalSource() const;
+    virtual bool isValidAuxValue(int) const;
     virtual int getDirectSignal(BlockSource&, BlockPos const&, int) const;
     virtual bool waterSpreadCausesSpawn() const;
+    virtual bool shouldConnectToRedstone(BlockSource&, BlockPos const&, int) const;
     virtual void handleRain(BlockSource&, BlockPos const&, float) const;
     virtual float getThickness() const;
     virtual bool checkIsPathable(Entity&, BlockPos const&, BlockPos const&) const;
@@ -89,6 +90,7 @@ public:
     virtual void onExploded(BlockSource&, BlockPos const&, Entity*) const;
     virtual void onStepOn(Entity&, BlockPos const&) const;
     virtual void onFallOn(BlockSource&, BlockPos const&, Entity*, float) const;
+    virtual void transformOnFall(BlockSource&, BlockPos const&, Entity*, float) const;
     virtual void onRedstoneUpdate(BlockSource&, BlockPos const&, int, bool) const;
     virtual void onMove(BlockSource&, BlockPos const&, BlockPos const&) const;
     virtual bool detachesOnPistonMove(BlockSource&, BlockPos const&) const;
@@ -106,6 +108,7 @@ public:
     virtual bool breaksFallingBlocks(int) const;
     virtual void destroy(BlockSource&, BlockPos const&, int, Entity*) const;
     virtual bool playerWillDestroy(Player&, BlockPos const&, int) const;
+    virtual bool getIgnoresDestroyPermissions(Entity&, BlockPos const&) const;
     virtual void neighborChanged(BlockSource&, BlockPos const&, BlockPos const&) const;
     virtual bool getSecondPart(BlockSource&, BlockPos const&, BlockPos&) const;
     virtual unsigned char getResource(Random&, int, int) const;
@@ -165,6 +168,9 @@ public:
     virtual void setTicking(bool);
     virtual void setMapColor(Color const&);
     virtual void addProperty(BlockProperty);
+    virtual Block* addBlockState(BlockState::BlockStates, int);
+    virtual void resetBitsUsed();
+    virtual void setAllowsRunes(bool);
     virtual int getSpawnResourcesAuxValue(unsigned char) const;
 
     // non virtual
@@ -204,6 +210,9 @@ public:
     void* getMobToSpawn(BlockSource&, BlockPos const&, std::map<EntityType, int, std::less<EntityType>, std::allocator<std::pair<EntityType const, int>>>, bool&) const;
     void* getPlacementFacingAll(Entity&, BlockPos const&, float);
     void* getPlacementFacingAllExceptAxisY(Entity&, BlockPos const&, float);
+    void* getBlockState(BlockState::BlockStates) const;
+    void* getParticleQuantityScalar() const;
+    bool getAllowsRunes() const;
 
     static void initBlocks();
     static void teardownBlocks();

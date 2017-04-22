@@ -90,12 +90,10 @@ class BlockSource {
     FullBlock getBlockAndData(int, int, int);
     unsigned char getData(BlockPos const&);
     unsigned char getData(int, int, int);
-    int getBrightness(LightLayer const&, BlockPos const&);
-    int getBrightness(LightLayer const&, int, int, int);
     int getBrightness(BlockPos const&);
-    int getBrightness(int, int, int);
     Brightness getRawBrightness(int, int, int, bool);
     Brightness getRawBrightness(BlockPos const&, bool);
+    void* getBrightnessPair(BlockPos const&);
     unsigned short getExtraData(BlockPos const&);
     BlockEntity* getBlockEntity(BlockPos const&);
     BlockEntity* getBlockEntity(int, int, int);
@@ -117,9 +115,11 @@ class BlockSource {
     bool shouldFreeze(BlockPos const&, bool);
     bool shouldThaw(BlockPos const&, bool);
     bool canProvideSupport(BlockPos const&, signed char, BlockSupportType);
+    bool allowsRunes(BlockPos const&);
+    bool isNearUnloadedChunks(ChunkPos const&);
 
-    bool checkBlockDestroyPermissions(Entity&, BlockPos const&, bool);
-    bool checkBlockPermissions(Entity&, BlockPos const&, bool);
+    bool checkBlockDestroyPermissions(Entity&, BlockPos const&, ItemInstance const*, bool);
+    bool checkBlockPermissions(Entity&, BlockPos const&, signed char, ItemInstance const*, bool);
     bool _getBlockPermissions(BlockPos const&, bool);
     bool hasBorderBlock(BlockPos);
 
@@ -132,8 +132,6 @@ class BlockSource {
     void setBlockAndData(int, int, int, FullBlock, int);
     void setBlockNoUpdate(int, int, int, BlockID);
     void setBlockAndDataNoUpdate(int, int, int, FullBlock);
-    void setBrightness(LightLayer const&, BlockPos const&, Brightness);
-    void setBrightness(LightLayer const&, int, int, int, Brightness);
     void* getLightColor(BlockPos const&, Brightness);
     void setExtraData(BlockPos const&, unsigned short);
     void setGrassColor(int, BlockPos const&, int);
@@ -168,22 +166,19 @@ class BlockSource {
     void onChunkDiscarded(LevelChunk&);
     void fireBlockEvent(int, int, int, int, int);
     void fireBlockChanged(BlockPos const&, FullBlock, FullBlock, int, Entity*);
-    void fireBlocksDirty(BlockPos const&, BlockPos const&);
     void fireAreaChanged(BlockPos const&, BlockPos const&);
     void fireBrightnessChanged(BlockPos const&);
     void fireBlockEntityChanged(BlockEntity&);
     void fireBlockEntityRemoved(std::unique_ptr<BlockEntity, std::default_delete<BlockEntity>>);
     void fireEntityChanged(Entity&);
-    void _fireColumnDirty(int, int, int, int, int);
     bool shouldFireEvents(LevelChunk&) const;
-    void runLightUpdates(LightLayer const&, BlockPos const&, BlockPos const&);
-    void updateLightIfOtherThan(LightLayer const&, BlockPos const&, Brightness);
     float getSeenPercent(Vec3 const&, AABB const&);
     Brightness _getSkyDarken();
 
     std::vector<Mob*> getMobsAt(EntityType, BlockPos const&);
     std::vector<Entity*> getEntities(Entity*, AABB const&);
     std::vector<Entity*> getEntities(EntityType, AABB const&, Entity*);
+    std::vector<Entity*> getEntities2(EntityType, AABB const&, bool);
     Entity* getNearestEntityOfType(Entity*, AABB const&, EntityType);
     Entity* getNearestEntityOfType(Entity*, Vec3 const&, float, EntityType);
     Entity* getNearestEntityNotOfType(Entity*, Vec3 const&, float, EntityType);
@@ -194,6 +189,7 @@ class BlockSource {
     std::vector<AABB>& fetchBorderBlockCollisions(BlockSource&, AABB const&, Entity*);
     void addUnloadedChunksAABBs(AABB const&);
     void addVoidFloor(AABB const&);
+    void* generateUnloadedChunkAABB(ChunkPos const&);
 
     HitResult clip(Vec3 const&, Vec3 const&, bool, bool, int, bool);
 

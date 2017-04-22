@@ -18,7 +18,7 @@ public:
     };
 
     virtual ~Tessellator();
-    virtual void* getStats();
+    virtual void* getStats() const;
 
     Tessellator(MemoryTracker*);
     int _allocateIndices(int);
@@ -43,13 +43,13 @@ public:
     void draw(mce::MaterialPtr const&, mce::TexturePtr const&, mce::TexturePtr const&);
     void enableColor();
     mce::Mesh end(char const*, bool);
-    int getByteSize();
+    int getByteSize() const;
     int getColor(); // ARGB
-    int getPolygonCount();
-    int getVertexCount();
-    mce::VertexFormat const getVertexFormat();
+    int getPolygonCount() const;
+    int getVertexCount() const;
+    mce::VertexFormat const& getVertexFormat() const;
     void init();
-    bool isTessellating();
+    bool isTessellating() const;
     void noColor();
     void normal(Vec3 const&);
     void normal(float, float, float);
@@ -78,6 +78,12 @@ public:
     void vertexUV(Vec3 const&, float, float);
     void vertexUV(float, float, float, float, float);
     void voidBeginAndEndCalls(bool);
+    void forceTessellateIntercept() const;
+    void resetTessellateIntercept();
+    Vec3 const& getOffset() const;
+    void triggerIntercept(mce::MaterialPtr const&, mce::TexturePtr const&);
+    void setTessellateIntercept(std::function<void (Tessellator const&, mce::MaterialPtr const&, mce::TexturePtr const&)>);
+    void overrideTessellateIntercept(std::function<void (Tessellator const&, mce::MaterialPtr const&, mce::TexturePtr const&)>);
 
     static Tessellator instance;
 

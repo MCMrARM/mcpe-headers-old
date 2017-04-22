@@ -30,7 +30,6 @@ public:
     void _mapToString(CompoundTag&, unsigned char);
     void fillEntityList(BlockSource&, BlockPos const&, BlockPos&);
     void setAuthor(std::string);
-    StructureTemplate& operator=(StructureTemplate const&);
     void _transform(BlockPos, Mirror, Rotation) const;
     void _calculateRelativePosition(BlockPos, StructureSettings const&) const;
     void placeInWorld(BlockSource&, BlockPos const&, StructureSettings&);
@@ -40,10 +39,12 @@ public:
     void getMarkers(BlockPos const&, StructureSettings&);
     void placeInWorldChunk(BlockSource&, BlockPos const&, StructureSettings&);
     void _mapToBlock(std::string&, int&);
-    void _mapToProperty(std::string const&, std::string const&, std::string const&);
-    void _mapTag(std::unique_ptr<CompoundTag>);
+    void _mapToProperty(std::string const&, std::string const&, std::string const&, int);
+    void _mapTag(std::unique_ptr<CompoundTag, std::default_delete<CompoundTag>>);
     void _transform(Vec3, Mirror, Rotation) const;
     void _calculateRelativePosition(Vec3, StructureSettings const&) const;
+    void* getZeroPositionWithTransform(BlockPos const&, Mirror, Rotation);
+    void* getZeroPositionWithTransform(BlockPos const&, Mirror, Rotation, int, int);
 
     // static
     static StructureSettings defaultSettings;

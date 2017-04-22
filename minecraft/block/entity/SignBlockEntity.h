@@ -13,7 +13,8 @@ public:
 	// virtual
 	virtual ~SignBlockEntity();
 	virtual void load(CompoundTag const&);
-	virtual void save(CompoundTag&);
+    virtual bool save(CompoundTag&) const;
+    virtual void onChanged(BlockSource&);
 	virtual void* getUpdatePacket(BlockSource&);
 	virtual void onUpdatePacket(CompoundTag const&, BlockSource&);
 	virtual int getShadowRadius(BlockSource&) const;

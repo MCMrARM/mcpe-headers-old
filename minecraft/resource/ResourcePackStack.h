@@ -18,17 +18,26 @@ public:
 
     std::vector<PackPair> stack;
 
+    // virtual
+    virtual ~ResourcePackStack();
+    virtual void* loadAllVersionsOf(ResourceLocation const&) const;
+    virtual void* loadAllVersionsOf(ResourceLocation const&, ResourcePackMergeStrategy&) const;
+
     // non virtual
-    ResourcePackStack(std::vector<ResourcePack*, std::allocator<ResourcePack*>> const&, ResourcePackRepository const&, OfferRepository*, bool);
+    ResourcePackStack(std::vector<ResourcePack*, std::allocator<ResourcePack*>> const&, ResourcePackRepository const&);
+    ResourcePackStack(std::vector<PackIdVersion, std::allocator<PackIdVersion>> const&, ResourcePackRepository const&);
     void add(ResourcePack*, ResourcePackRepository const&, bool);
-    void* _removeInvalidPacks(ResourcePackRepository const&, OfferRepository*);
-    ResourcePackStack(std::vector<PackIdVersion, std::allocator<PackIdVersion>> const&, ResourcePackRepository const&, OfferRepository*, bool);
     void* _populateDependencies(std::vector<PackPair, std::allocator<PackPair>>&, ResourcePack&, ResourcePackRepository const&, bool);
-    void* deserialize(std::basic_fstream<char, std::char_traits<char>>&, ResourcePackRepository const&, OfferRepository*, bool);
     void* getSplitStacks(ResourcePackStack&, ResourcePackStack&) const;
     void* getStack() const;
     void* getStackWithoutDependencies() const;
     void* getStackAsIdentities() const;
+    void* deserialize(std::basic_fstream<char, std::char_traits<char>>&, ResourcePackRepository const&);
+    void* serialize(std::basic_fstream<char, std::char_traits<char>>&) const;
+    void* getLoadingReport() const;
+    void* clearPackReports();
+    void* mergePackReports(std::vector<PackReport, std::allocator<PackReport>>&);
+    void* removeDuplicates();
 
 };
 

@@ -13,7 +13,11 @@ public:
     ResourceLocation(std::string const& path, ResourceFileSystem fileSystem) : path(path), fileSystem(fileSystem) { }
     ResourceLocation(std::string const& path) : ResourceLocation(path, ResourceFileSystem::InUserPackage) { }
     ResourceLocation() : ResourceLocation(Util::EMPTY_STRING) { }
+    ~ResourceLocation();
 
     std::string getFullPath() const;
+
+    void serialize(Json::Value&) const;
+    void deserialize(Json::Value const&);
 
 };

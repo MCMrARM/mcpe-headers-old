@@ -7,6 +7,6 @@ class BlockEntityFactory {
   
 public:
 
-    std::unique_ptr<BlockEntity> createBlockEntity(BlockEntityType, const BlockPos&, BlockID);
+    std::unique_ptr<BlockEntity> createBlockEntity(BlockEntityType, BlockPos const&, BlockID);
     
 };

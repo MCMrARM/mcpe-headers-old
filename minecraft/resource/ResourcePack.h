@@ -15,7 +15,8 @@ public:
 
     enum class PackType;
 
-    ResourcePack(std::unique_ptr<PackAccessStrategy, std::default_delete<PackAccessStrategy>>, ResourcePack::PackType, ResourcePackLocation, bool);
+    ResourcePack(std::unique_ptr<PackAccessStrategy, std::default_delete<PackAccessStrategy>>, PackCategory, PackOrigin, bool);
+    ~ResourcePack();
     std::string const& getPackId() const;
     std::string const& getVersion() const;
     PackManifest* getManifest() const;
@@ -26,6 +27,8 @@ public:
     bool isZipped() const;
 
     void* _generateIconPath();
+    void* _generateTextureListIfNeeded();
+    void* _generateAssetSet();
     void* getIconPath() const;
     void* getDefaultItemIconPath();
     void* getDefaultItemFileSystem();
@@ -38,10 +41,13 @@ public:
     bool getFile(std::string const&, std::string&) const;
     bool getResource(std::string const&, std::string&) const;
 
-    void forEachIn(std::string const&, std::function<void (std::string const&)>) const;
+    void forEachIn(std::string const&, std::function<void (std::string const&)>, bool) const;
 
     void setLocale(std::string const&);
     void setError();
+
+    void gatherResourcePackTelemetry(MinecraftEventing&, int);
+    void gatherBehaviorPackTelemetry(MinecraftEventing&, int);
 
     // static fields
     static std::string RESOURCE_PACK_ICON_PATH;

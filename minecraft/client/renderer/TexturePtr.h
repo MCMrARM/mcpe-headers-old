@@ -18,26 +18,21 @@ public:
 
     TexturePtr();
     TexturePtr(mce::TexturePtr&&);
-    TexturePtr(mce::TextureGroup&, ResourceLocation const&);
+    TexturePtr(mce::TextureGroup&, ResourceLocation const&, bool);
 
     ~TexturePtr();
 
-    operator bool() const;
     mce::TexturePtr& operator=(mce::TexturePtr&&);
-    mce::Texture* operator->();
-    mce::Texture const* operator->() const;
-    mce::Texture& operator*();
-    mce::Texture const& operator*() const;
 
     mce::Texture* get() const;
-    mce::TextureGroup* getGroup() const;
+    mce::TextureGroup* getGroup();
     int hashCode() const;
 
     TexturePtr clone() const;
     void _move(mce::TexturePtr&&);
     void _deref();
 
-    void onGroupReloaded();
+    void onGroupReloaded(bool, bool);
     void onGroupDestroyed();
 
     static TexturePtr makeTemporaryWrapper(mce::Texture&);

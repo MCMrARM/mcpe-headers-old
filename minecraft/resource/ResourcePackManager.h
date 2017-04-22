@@ -30,11 +30,18 @@ public:
     // virtual
     virtual ~ResourcePackManager();
     virtual bool load(ResourceLocation const&, std::string&);
+    virtual void* load(ResourceLocation const&, std::string&, std::vector<std::string, std::allocator<std::string>> const&);
     virtual void* loadAllVersionsOf(ResourceLocation const&);
     virtual void* loadTexture(ResourceLocation const&);
+    virtual bool isInStreamableLocation(ResourceLocation const&);
+    virtual bool isInStreamableLocation(ResourceLocation const&, std::vector<std::string, std::allocator<std::string>> const&);
+    virtual void* getPath(ResourceLocation const&);
+    virtual void* getPath(ResourceLocation const&, std::vector<std::string, std::allocator<std::string>> const&);
+    virtual void* getPathContainingResource(ResourceLocation const&);
+    virtual void* getPathContainingResource(ResourceLocation const&, std::vector<std::string, std::allocator<std::string>>);
 
     // non virtual
-    ResourcePackManager(std::string const&);
+    ResourcePackManager(std::function<std::string ()>);
     void* _getResource(std::string const&, std::string&) const;
     void* loadText(ResourceLocation const&, std::string&);
     void* findAllTexturesInUse() const;
@@ -44,6 +51,7 @@ public:
     void* getStack(ResourcePackStackType) const;
     bool _shouldRebuildStack() const;
     void _composeFullStack();
+    void* composeFullStack(ResourcePackStack&, ResourcePackStack const&, ResourcePackStack const&, ResourcePackStack const&) const;
     void* _updateLanguageSubpacks();
     void* notifyActiveResourcePackChanged();
     void* registerResourcePackListener(ResourcePackListener&);
@@ -55,6 +63,15 @@ public:
     void onLanguageChanged();
     void handlePendingStackChanges();
     void* copyPacksToNewLevel(std::string, PackType);
+    void* loadAllVersionsOf(ResourceLocation const&, ResourcePackMergeStrategy&);
+    void* getStackSize() const;
+    void clearPackReports();
+    void mergePackReports(std::vector<PackReport, std::allocator<PackReport>>&);
+    void* getGlobalStackFromFullStack(ResourcePackStack&) const;
+    void onVanillaPackDownloadComplete();
+    PackSourceReport& getPackSourceReport() const;
+    void setPackSourceReport(PackSourceReport&&);
+    void* removePack(ResourcePack*);
 
 };
 

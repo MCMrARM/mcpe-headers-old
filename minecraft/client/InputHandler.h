@@ -29,32 +29,32 @@ class InputHandler {
 public:
 
     InputHandler(BindingFactory&, InputMappingFactory&, InputMode);
+    ~InputHandler();
 
     void render(InputRenderContext&) const;
-    void tick();
 
-    void _handleInputModeChange(InputMode);
-    void _handleButtonEvent(ButtonEventData const&, FocusImpact);
-    void _handlePointerLocationEvent(PointerLocationEventData const&, FocusImpact);
-    void _handleCaretLocationEvent(CaretLocationData const&, FocusImpact);
-    void _handleDirectionEvent(DirectionEventData const&, FocusImpact);
-    void _handleVectorEvent(VectorEventData const&, FocusImpact);
-    void _handleRawInputEvent(RawInputEventData const&);
+    void _handleInputModeChange(InputMode, ClientInstance&);
+    void _handleButtonEvent(ButtonEventData const&, FocusImpact, ClientInstance&);
+    void _handlePointerLocationEvent(PointerLocationEventData const&, FocusImpact, ClientInstance&);
+    void _handleCaretLocationEvent(CaretLocationData const&, FocusImpact, ClientInstance&);
+    void _handleDirectionEvent(DirectionEventData const&, FocusImpact, ClientInstance&);
+    void _handleVectorEvent(VectorEventData const&, FocusImpact, ClientInstance&);
+    void _handleRawInputEvent(RawInputEventData const&, ClientInstance&);
 
     InputMode getCurrentInputMode() const;
     void setInputBindingMode(InputBindingMode);
     void setSuspendInput(bool);
     void setDisableInput(bool);
 
-    void registerInputModeHandler(std::function<void (InputMode)>);
-    void registerButtonDownHandler(std::string, std::function<void (FocusImpact)>, bool);
-    void registerButtonUpHandler(std::string, std::function<void (FocusImpact)>, bool);
-    void registerTextCharHandler(std::function<void (std::string const&, bool, FocusImpact)>);
-    void registerCaretLocationHandler(std::function<void (int, FocusImpact)>);
-    void registerPointerLocationHandler(std::function<void (short, short, FocusImpact)>);
-    void registerDirectionHandler(DirectionId, std::function<void (float, float, FocusImpact)>);
-    void registerVectorHandler(std::function<void (short, float, float, float, FocusImpact)>);
-    void registerRawInputHandler(std::function<void (int, RawInputType, ButtonState, bool)>);
+    void registerInputModeHandler(std::function<void (InputMode, ClientInstance&)>);
+    void registerButtonDownHandler(std::string, std::function<void (FocusImpact, ClientInstance&)>, bool);
+    void registerButtonUpHandler(std::string, std::function<void (FocusImpact, ClientInstance&)>, bool);
+    void registerCaretLocationHandler(std::function<void (int, FocusImpact, ClientInstance&)>);
+    void registerDirectionHandler(DirectionId, std::function<void (float, float, FocusImpact, ClientInstance&)>);
+    void registerVectorHandler(std::function<void (short, float, float, float, FocusImpact, ClientInstance&)>);
+    void registerRawInputHandler(std::function<void (int, RawInputType, ButtonState, bool, ClientInstance&)>);
+    void registerTextCharHandler(std::function<void (std::string const&, bool, FocusImpact, ClientInstance&)>);
+    void registerPointerLocationHandler(std::function<void (PointerLocationEventData const&, FocusImpact, ClientInstance&)>);
     void registerInputDeviceMapper(std::unique_ptr<InputDeviceMapper, std::default_delete<InputDeviceMapper>>);
 
     void* getInputMappingStackSize() const;

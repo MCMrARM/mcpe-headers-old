@@ -11,7 +11,7 @@ public:
     ResourceLocation location;   
 
     TextureUVCoordinateSet();
-    TextureUVCoordinateSet(float, float, float, float, unsigned short, unsigned short, ResourceLocation);
+    TextureUVCoordinateSet(float, float, float, float, unsigned short, unsigned short, ResourceLocation, float);
 
     TextureUVCoordinateSet getFlippedHorizontal() const;
     TextureUVCoordinateSet getFlippedVertically() const;

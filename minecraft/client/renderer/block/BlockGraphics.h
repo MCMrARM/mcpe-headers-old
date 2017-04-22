@@ -55,7 +55,7 @@ public:
     virtual void* getExtraRenderLayers();
     virtual AABB const& getVisualShape(BlockSource&, BlockPos const&, AABB&, bool);
     virtual AABB const& getVisualShape(unsigned char, AABB&, bool);
-    virtual void* getCarriedTexture(signed char, int) const;
+    virtual void* getCarriedTexture(signed char, int, int) const;
     virtual void animateTick(BlockSource&, BlockPos const&, Random&);
     virtual Vec3 randomlyModifyPosition(BlockPos const&, int&) const;
     virtual Vec3 randomlyModifyPosition(BlockPos const&) const;
@@ -86,8 +86,9 @@ public:
     Block* getBlock() const;
     Color getMapColor(FullBlock const&) const;
     Color getMapColor() const;
-    TextureUVCoordinateSet& getTexture(signed char) const;
-    TextureUVCoordinateSet& getTexture(signed char, int) const;
+    TextureUVCoordinateSet& getTexture(signed char, int, int) const;
+    TextureUVCoordinateSet& getTexture(BlockPos const&, signed char, int) const;
+    void* getTextureVariations(signed char, int) const;
     TextureAtlasItem& getAtlasItem(signed char) const;
     bool isTextureIsotropic(signed char) const;
     bool isAlphaTested();
@@ -97,12 +98,14 @@ public:
     BlockSoundType getSoundType() const;
     BlockShape getBlockShape() const;
     BlockRenderLayer getRenderLayer() const;
-    
-    static void initBlocks();
+
+    static void initBlocks(ResourcePackManager&);
     static void teardownBlocks();
     static void setTextureAtlas(std::shared_ptr<TextureAtlas>);
     static void reloadBlockUVs(TextureAtlas&);
-    static TextureUVCoordinateSet getTextureUVCoordinateSet(std::string const&, int);
+    static TextureUVCoordinateSet getTextureUVCoordinateSet(std::string const&, int, int);
+    static TextureUVCoordinateSet& _chooseRandomTexture(float, std::vector<TextureUVCoordinateSet, std::allocator<TextureUVCoordinateSet>> const&);
+    static TextureUVCoordinateSet& chooseRandomTexture(float, std::vector<TextureUVCoordinateSet, std::allocator<TextureUVCoordinateSet>> const&);
     static BlockGraphics* lookupByName(std::string const&, bool);
 
     // static fields

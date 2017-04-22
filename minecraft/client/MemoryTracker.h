@@ -7,7 +7,7 @@ class MemoryTracker {
 public:
 
     virtual ~MemoryTracker();
-    virtual void* getStats(void) = 0;
+    virtual void* getStats() const = 0;
 
     MemoryTracker(std::string const&, MemoryTracker*);
     void memoryStats();

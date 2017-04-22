@@ -18,9 +18,9 @@ public:
 
     // virtual
     virtual ~GameMode();
-    virtual bool startDestroyBlock(Player&, BlockPos, signed char);
+    virtual bool startDestroyBlock(Player&, BlockPos, signed char, bool&);
     virtual bool destroyBlock(Player&, BlockPos, signed char);
-    virtual bool continueDestroyBlock(Player&, BlockPos, signed char);
+    virtual bool continueDestroyBlock(Player&, BlockPos, signed char, bool&);
     virtual void stopDestroyBlock(Player&);
     virtual void startBuildBlock(Player&, BlockPos, signed char);
     virtual bool buildBlock(Player&, BlockPos, signed char);
@@ -29,7 +29,7 @@ public:
     virtual void tick();
     virtual float getPickRange(Player*, InputMode const&, bool);
     virtual bool useItem(Player&, ItemInstance&);
-    virtual bool useItemOn(Player&, ItemInstance*, BlockPos const&, signed char, Vec3 const&);
+    virtual bool useItemOn(Player&, ItemInstance&, BlockPos const&, signed char, Vec3 const&);
     virtual bool interact(Player&, Entity&);
     virtual void attack(Player&, Entity&);
     virtual void releaseUsingItem(Player&);
@@ -38,14 +38,16 @@ public:
     virtual void registerUpsellScreenCallback(std::function<void (bool)>);
 
     // non virtual
-    GameMode(PacketSender&, Level&, SoundPlayer&, Vibration&);
+    GameMode(PacketSender&, Level&);
     bool _canDestroy(Player&, BlockPos, signed char);
     bool _creativeDestroyBlock(Player&, BlockPos, signed char);
     bool _destroyBlockInternal(Player&, BlockPos, signed char);
     void _releaseUsingItemInternal(Player&);
+    bool _canUseBlock(Player&, Block const*);
     float getOldDestroyProgress();
     float getDestroyProgress();
     float getHitProgress(float);
+    float getDestroyRate(Player&, Block const&);
     void toggleLongPickRange();
 
 };
