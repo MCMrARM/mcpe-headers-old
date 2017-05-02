@@ -5,7 +5,12 @@
 class PackManifest;
 class PackAccessStrategy;
 class PackManifest;
+class MinecraftEventing;
 enum class ResourcePackLocation;
+enum class PackCategory {
+  FREE, ENTITLEMENT, PAID
+};
+enum class PackOrigin;
 
 class ResourcePack {
 

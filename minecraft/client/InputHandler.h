@@ -3,6 +3,7 @@
 #include <string>
 #include <functional>
 #include <memory>
+class ClientInstance;
 class BindingFactory;
 class InputMapping;
 class InputMappingFactory;

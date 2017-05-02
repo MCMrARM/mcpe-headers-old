@@ -6,10 +6,17 @@ class ResourcePack;
 class ResourcePackRepository;
 class OfferRepository;
 class PackIdVersion;
+class ResourcePackMergeStrategy;
+
+struct PackReport {
+    int filler[0x5C/4];
+    PackReport();
+};
 
 struct PackPair {
     ResourcePack* pack;
     bool unknown;
+    PackReport report;
 };
 
 class ResourcePackStack {

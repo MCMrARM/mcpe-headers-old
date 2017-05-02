@@ -15,10 +15,12 @@ class PushNotificationMessage;
 class UriListener;
 class ActivationUri;
 class ResourceLocation;
+namespace mce { class ImageBuffer; }
 enum class ControllerType;
 enum class FullscreenMode;
 enum class FileStorageDirectory;
 
+enum class PermissionRequestReason;
 enum class UIScalingRules {
     Desktop, PocketApple, PocketAndroid, PocketWindows
 };

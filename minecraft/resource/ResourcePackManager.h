@@ -7,6 +7,7 @@
 #include "ResourcePackListener.h"
 class ResourceLocation;
 class ResourcePack;
+class PackSourceReport;
 
 enum class PackType;
 enum class ResourcePackStackType;
@@ -15,17 +16,18 @@ class ResourcePackManager {
 
 public:
 
-    /* 0x04 */ std::string imagesPrefix;
-    /* 0x08 */ std::unordered_set<ResourcePackListener*> listener;
-    /* 0x24 */ std::unique_ptr<ResourcePackStack> stackInternal; // includes the skins resource pack
-    /* 0x28 */ std::unique_ptr<ResourcePackStack> stack2;
-    /* 0x2C */ std::unique_ptr<ResourcePackStack> stack3;
-    /* 0x30 */ std::unique_ptr<ResourcePackStack> stack4;
-    /* 0x34 */ std::unique_ptr<ResourcePackStack> stackMinecraft;
-    /* 0x38 */ std::unique_ptr<ResourcePackStack> fullStack;
-    /* 0x3C */ std::string unknown;
-    /* 0x40 */ bool unknown2, hasPendingStackChanges;
-    /* size = 0x44 */
+    /* 0x04 */ std::function<std::string ()> imagesPrefix;
+    /* 0x14 */ std::unordered_set<ResourcePackListener*> listener;
+    /* 0x30 */ std::unique_ptr<ResourcePackStack> stackInternal; // includes the skins resource pack
+    /* 0x34 */ std::unique_ptr<ResourcePackStack> stack2;
+    /* 0x38 */ std::unique_ptr<ResourcePackStack> stack3;
+    /* 0x3C */ std::unique_ptr<ResourcePackStack> stack4;
+    /* 0x40 */ std::unique_ptr<ResourcePackStack> stackMinecraft;
+    /* 0x44 */ std::unique_ptr<ResourcePackStack> fullStack;
+    /* 0x48 */ PackSourceReport* report;
+    /* 0x4C */ std::string unknown;
+    /* 0x50 */ bool unknown2, hasPendingStackChanges;
+    /* size = 0x54 */
 
     // virtual
     virtual ~ResourcePackManager();
