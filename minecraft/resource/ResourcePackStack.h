@@ -9,7 +9,10 @@ class PackIdVersion;
 class ResourcePackMergeStrategy;
 
 struct PackReport {
-    int filler[0x5C/4];
+    /* 0x00 */ char filler[0x1C];
+    /* 0x1C */ long long filler2;
+    /* 0x24 */ char filler3[0x5C-0x24];
+
     PackReport();
 };
 
