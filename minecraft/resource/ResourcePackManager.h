@@ -9,7 +9,7 @@ class ResourceLocation;
 class ResourcePack;
 class PackSourceReport;
 
-enum class PackType;
+enum class PackType : unsigned char;
 enum class ResourcePackStackType;
 
 class ResourcePackManager {

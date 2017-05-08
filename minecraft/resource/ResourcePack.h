@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <memory>
 #include "ResourceLocation.h"
 class PackManifest;
 class PackAccessStrategy;
@@ -16,9 +17,10 @@ class ResourcePack {
 
 public:
 
-    char filler[0x1C];
-
-    enum class PackType;
+    /* 0x00 */ char filler[0x14];
+    /* 0x14 */ std::unique_ptr<PackManifest> manifest;
+    /* 0x18 */ int filler2;
+    /* size = 0x1C */
 
     ResourcePack(std::unique_ptr<PackAccessStrategy, std::default_delete<PackAccessStrategy>>, PackCategory, PackOrigin, bool);
     ~ResourcePack();
